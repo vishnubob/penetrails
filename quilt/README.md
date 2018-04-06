@@ -1,6 +1,6 @@
 # Convolutional Generative Adversarial Network to Synthesize Novel Quilt Designs
 
-April 6th, 2018 - this net is currently training, and publishing new fakes on [twitter](https://twitter.com/penetrails).
+## April 6th, 2018 - This net is currently training and publishing real-time results on [twitter](https://twitter.com/penetrails).
 
 This is my first attempt at designing and tuning a GAN network for visual media.  Quilts as a subject were selected because:
 
