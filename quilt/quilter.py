@@ -154,6 +154,7 @@ def _get_dataset(cnt):
     while True:
         r = requests.get(url)
         if r.status_code != 200:
+            print("failed to get url")
             time.sleep(5)
             continue
         break
@@ -229,57 +230,54 @@ def train_gan(ctx, net=None, initial_epoch=0):
     while True:
         epoch += 1
         dataloader = get_dataset()
-        i = 0
-        for rep in range(5):
-            i_rep = i
-            for i, img in enumerate(dataloader):
-                num_img = img.shape[0]
-                # =================train discriminator
-                real_img = img.as_in_context(ctx)
-                real_label = nd.ones(shape=[num_img], ctx=ctx)
-                fake_label = nd.zeros(shape=[num_img], ctx=ctx)
+        for i, img in enumerate(dataloader):
+            num_img = img.shape[0]
+            # =================train discriminator
+            real_img = img.as_in_context(ctx)
+            real_label = nd.ones(shape=[num_img], ctx=ctx)
+            fake_label = nd.zeros(shape=[num_img], ctx=ctx)
 
-                # compute loss of real_img
-                with mx.autograd.record():
-                    real_out = d(real_img)
-                    d_loss_real = bce(real_out, real_label)
-                real_scores = real_out  # closer to 1 means better
+            # compute loss of real_img
+            with mx.autograd.record():
+                real_out = d(real_img)
+                d_loss_real = bce(real_out, real_label)
+            real_scores = real_out  # closer to 1 means better
 
-                # compute loss of fake_img
-                z = nd.random_normal(
-                    loc=0, scale=1, shape=[num_img, z_dimension], ctx=ctx)
-                with mx.autograd.record():
-                    fake_img = ge(z)
-                    fake_out = d(fake_img)
-                    d_loss_fake = bce(fake_out, fake_label)
-                fake_scores = fake_out  # closer to 0 means better
+            # compute loss of fake_img
+            z = nd.random_normal(
+                loc=0, scale=1, shape=[num_img, z_dimension], ctx=ctx)
+            with mx.autograd.record():
+                fake_img = ge(z)
+                fake_out = d(fake_img)
+                d_loss_fake = bce(fake_out, fake_label)
+            fake_scores = fake_out  # closer to 0 means better
 
-                # bp and optimize
-                with mx.autograd.record():
-                    d_loss = d_loss_real + d_loss_fake
-                d_loss.backward()
-                d_optimizer.step(num_img)
+            # bp and optimize
+            with mx.autograd.record():
+                d_loss = d_loss_real + d_loss_fake
+            d_loss.backward()
+            d_optimizer.step(num_img)
 
-                # ===============train generator
-                # compute loss of fake_img
-                with mx.autograd.record():
-                    fake_img = ge(z)
-                    output = d(fake_img)
-                    g_loss = bce(output, real_label)
+            # ===============train generator
+            # compute loss of fake_img
+            with mx.autograd.record():
+                fake_img = ge(z)
+                output = d(fake_img)
+                g_loss = bce(output, real_label)
 
-                # bp and optimize
-                g_loss.backward()
-                g_optimizer.step(num_img)
+            # bp and optimize
+            g_loss.backward()
+            g_optimizer.step(num_img)
 
-                #save_image(real_img, './img/real_images.png')
-                if (i + i_rep + 1) % 100 == 0:
-                    print('Epoch [{}/{}], d_loss: {:.6f}, g_loss: {:.6f} '
-                          'D real: {:.6f}, D fake: {:.6f}'.format(
-                              epoch, num_epoch,
-                              nd.mean(d_loss).asscalar(),
-                              nd.mean(g_loss).asscalar(),
-                              nd.mean(real_scores).asscalar(),
-                              nd.mean(fake_scores).asscalar()))
+            #save_image(real_img, './img/real_images.png')
+            if (i + 1) % 100 == 0:
+                print('Epoch [{}/{}], d_loss: {:.6f}, g_loss: {:.6f} '
+                      'D real: {:.6f}, D fake: {:.6f}'.format(
+                          epoch, num_epoch,
+                          nd.mean(d_loss).asscalar(),
+                          nd.mean(g_loss).asscalar(),
+                          nd.mean(real_scores).asscalar(),
+                          nd.mean(fake_scores).asscalar()))
         if ((epoch + 1) % 5) == 0:
             save_image(real_img, './img/real_images.png')
             save_image(fake_img, './img/fake_images-{}.png'.format(epoch + 1))

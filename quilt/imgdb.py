@@ -91,7 +91,7 @@ class Proc(Process):
             self.n_process += self.process()
 
 class BatchScout(Proc):
-    MaxSize = 5000
+    MaxSize = 50
 
     def __init__(self, loader, size=(64, 64), batch_size=16, shots_on_goal=5, **kw):
         super(BatchScout, self).__init__(**kw)
