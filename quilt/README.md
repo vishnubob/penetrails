@@ -1,4 +1,4 @@
-# Convolutional Adversarial Generative Network to Generate Novel Quilts Designs
+# Convolutional Generative Adversarial Network to Synthesize Novel Quilts Designs
 
 April 6th, 2018 - this net is currently training, and publishing new fakes on [twitter](https://twitter.com/penetrails).
 
