@@ -11,7 +11,7 @@ This is my first attempt at designing and tuning a GAN network for visual media.
 
 [This script](https://github.com/SherlockLiao/mxnet-gluon-tutorial/blob/master/09-Generative%20Adversarial%20network/conv_gan.py) served as an initial jumping off point for the design.  The topology of the original network is mostly the same, but a few adjustments were made to accommodate  RGB channels and an overall doubling of the resolution.
 
-The image corpus is composed of about 40,000 images of quilts scraped from the web.  ResNet was used to refine this down to about 11,000 images, with a high-confidence to their, er, "quilt-e-ness".  All of this is done on two home servers.  One server runs a custom flask app, serving up a variations of the corpus with [imgaug](https://github.com/aleju/imgaug), while the other trains the GAN using a 1080Ti GPU.
+The image corpus is composed of about 40,000 images of quilts scraped from the web.  ResNet was used to refine this down to about 11,000 images, with a high-confidence to their, er, "quilt-e-ness".  All of this is done on two home servers.  One server runs a custom flask app, serving up a variations of the corpus with [imgaug](https://github.com/aleju/imgaug), while the other trains the GAN with the aid of its GPU.
 
 The results, as of right now, don't really look like quilts, but there is still a lot of headroom for tuning.
 
