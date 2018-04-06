@@ -30,5 +30,3 @@ The results, as of right now, don't really look like quilts, but there is still 
 ## Late Epoch
 
 ![fake quilts, late epoch](https://github.com/vishnubob/penetrails/raw/master/quilt/examples/fake-example-late-epoch.png)
-
-*Warning:* this is a work in progress by a novice neural network designer
