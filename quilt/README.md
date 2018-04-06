@@ -25,16 +25,18 @@ The results, as of right now, don't really look like quilts, but there is still 
 
 ## Training Example
 
-![training quilts](https://github.com/vishnubob/penetrails/raw/master/quilt/examples/training-example.png)
-
-## Early Epoch
-
-![fake quilts, early epoch](https://github.com/vishnubob/penetrails/raw/master/quilt/examples/fake-example-early-epoch.png)
-
-## Mid Epoch
-
-![fake quilts, mod epoch](https://github.com/vishnubob/penetrails/raw/master/quilt/examples/fake-example-mid-epoch.png)
+![training quilts](https://github.com/vishnubob/penetrails/raw/master/quilt/examples/training-example.jpg)
 
 ## Late Epoch
 
-![fake quilts, late epoch](https://github.com/vishnubob/penetrails/raw/master/quilt/examples/fake-example-late-epoch.png)
+![fake quilts, late epoch](https://github.com/vishnubob/penetrails/raw/master/quilt/examples/fake-example-late-epoch.jpg)
+
+## Mid Epoch
+
+![fake quilts, mod epoch](https://github.com/vishnubob/penetrails/raw/master/quilt/examples/fake-example-mid-epoch.jpg)
+
+## Early Epoch
+
+![fake quilts, early epoch](https://github.com/vishnubob/penetrails/raw/master/quilt/examples/fake-example-early-epoch.jpg)
+
+
