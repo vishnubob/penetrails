@@ -1,9 +1,8 @@
 # Convolutional Adversarial Generative Network to Generate Novel Quilts Designs
 
-Warning: this is a work in progress by a novice neural network designer.
+April 6th, 2018 - this net is currently training, and publishing new fakes on [twitter](https://twitter.com/penetrails).
 
-Giles Hall
-April, 2018
+*Warning:* this is a work in progress by a novice neural network designer.
 
 ## Training Example
 
